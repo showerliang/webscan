@@ -1,4 +1,6 @@
-#Datas dos entregas para o Interlegis
+#Datas dos entregas para o Interlegis.
+
+= Datas =
 
   * Entregável 1: 21/05/2008
   * Entregável 2: 11/07/2008
