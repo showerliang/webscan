@@ -1,4 +1,4 @@
-#Datas dos entregas para o Interlegis.
+#summary Datas dos entregas para o Interlegis.
 
 = Datas =
 
