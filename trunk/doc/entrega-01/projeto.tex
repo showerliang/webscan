@@ -9,6 +9,7 @@
 \usepackage{graphicx}         % Utilizado para inserir imagens
 \usepackage{hyperref}         % Cria link entre o sumario e as sections
 \usepackage{fancyhdr}         % Permite alterar o header e footer
+\usepackage{mdwlist}          % Permite criar listas com menos espaçamento
 \usepackage[includefoot]{geometry}
 
 % Seta o estilo padrao
@@ -58,7 +59,14 @@
 
 % PARA INSERIR NOVAS PAGINAS BASTA ADICIONAR AQUI:
 % Conte√∫do
-\include{capit/1}
-\include{capit/2}
+\include{capit/intro}
+\include{capit/casos_de_uso}
+\include{capit/mockups}
+\include{capit/pesquisa_libs}
+
+\clearpage
+
+% Glossário
+\include{glossario}
 
 \end{document}
