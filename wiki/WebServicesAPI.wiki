@@ -1,0 +1,112 @@
+#summary Web Services API.
+#labels Phase-Design,Phase-Implementation
+
+= Web Services API =
+
+ # All returns are JSON.
+ # The default return is an associative array containing the error code and msg. If the error code is equal to 0 (zero) there is no errors.
+
+== Scanner services: ==
+ # *Arguments marked with `*` are mandatory.*
+
+{{{
+URL: /scanner
+Args: id*, localization, description, manufactor*, model*, papersize, isindexable, user, group
+Method: POST
+Returns: Scanner object.
+}}}
+
+{{{
+URL: /scanner/[id]
+Args: None
+Method: GET, POST
+Returns: Scanner object.
+}}}
+
+{{{
+URL: /scanner/[id]/modify
+Args: id, localization, description, manufactor, model, papersize, isindexable, user, group
+Method: POST
+Returns: Scanner object.
+}}}
+
+{{{
+URL: /scanner/[id]/delete
+Args: None
+Method: DELETE
+Returns: Default
+}}}
+
+{{{
+URL: /scanner/[id]/test
+Args: None
+Method: GET, POST
+Returns: Default
+}}}
+
+{{{
+URL: /scanner/[id]/scan
+Args: None
+Method: GET, POST
+Return: Page object.
+}}}
+
+== User services: ==
+
+{{{
+URL: /user
+Args: username, password, role
+Method: POST
+Returns: User object.
+}}}
+
+{{{
+URL: /user/[username]
+Args: None
+Method: POST
+Returns: User object.
+}}}
+
+{{{
+URL: /user/[username]/modify
+Args: username, password, role
+Method: POST
+Returns: User object.
+}}}
+
+{{{
+URL: /user/[username]/delete
+Args: None
+Method: DELETE
+Returns: Default
+}}}
+
+{{{
+URL: /user/[username]/pages
+Args: None
+Method: GET, POST
+Returns: Collection of page objects.
+}}}
+
+{{{
+URL: /user/[username]/document
+Args: pages (list of page ids)
+Method: GET, POST
+Return: Downloadable PDF document.
+}}}
+
+== Auth Methods: ==
+
+{{{
+URL: /auth/signin
+Args: username, password
+Method: POST
+Returns: Default
+}}}
+
+{{{
+URL: /auth/signout
+Args: None
+Method: GET, POST
+Returns: Default
+}}}
