@@ -11,41 +11,48 @@
 
 {{{
 URL: /scanner
-Args: id*, localization, description, manufactor*, model*, papersize, isindexable, user, group
+Args: None
+Method: GET, POST
+Returns: Collection containing all scanner object.
+}}}
+
+{{{
+URL: /scanner.add
+Args: name*, localization, description, manufactor*, model*, papersize, isindexable, user, group
 Method: POST
 Returns: Scanner object.
 }}}
 
 {{{
-URL: /scanner/[id]
+URL: /scanner/[name]
 Args: None
 Method: GET, POST
 Returns: Scanner object.
 }}}
 
 {{{
-URL: /scanner/[id]/modify
+URL: /scanner/[name]/modify
 Args: id, localization, description, manufactor, model, papersize, isindexable, user, group
 Method: POST
 Returns: Scanner object.
 }}}
 
 {{{
-URL: /scanner/[id]/delete
+URL: /scanner/[name]/delete
 Args: None
 Method: DELETE
 Returns: Default
 }}}
 
 {{{
-URL: /scanner/[id]/test
+URL: /scanner/[name]/test
 Args: None
 Method: GET, POST
 Returns: Default
 }}}
 
 {{{
-URL: /scanner/[id]/scan
+URL: /scanner/[name]/scan
 Args: None
 Method: GET, POST
 Return: Page object.
@@ -55,6 +62,13 @@ Return: Page object.
 
 {{{
 URL: /user
+Args: None
+Method: GET, POST
+Returns: Collection containing all user objects.
+}}}
+
+{{{
+URL: /user.add
 Args: username, password, role
 Method: POST
 Returns: User object.
@@ -90,7 +104,21 @@ Returns: Collection of page objects.
 
 {{{
 URL: /user/[username]/document
-Args: pages (list of page ids)
+Args: None
+Method: GET, POST
+Return: Collection of document objects.
+}}}
+
+{{{
+URL: /user/[username]/document.create
+Args: docname, docdescript, pages (list of page ids)
+Method: GET, POST
+Return: Downloadable PDF document.
+}}}
+
+{{{
+URL: /user/[username]/document/[docname]
+Args: None
 Method: GET, POST
 Return: Downloadable PDF document.
 }}}
