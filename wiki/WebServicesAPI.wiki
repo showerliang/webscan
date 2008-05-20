@@ -5,6 +5,7 @@
 
 == Important Considerations ==
 
+ # All strings between [] are variables.
  # All returns are JSON.
  # The default return is an associative array containing the error code and msg. If the error code is equal to 0 (zero) there is no errors.
  # Arguments marked with `*` are optional.
@@ -34,6 +35,7 @@ ie:
 === Scanner ===
 
 {{{
+Action: Show all configured scanners.
 URL: /scanner
 Args: None
 Method: GET, POST
@@ -41,6 +43,7 @@ Returns: Collection containing all scanner objects.
 }}}
 
 {{{
+Action: Add a new scanner to the list.
 URL: /scanner.add
 Args: name, localization*, description*, manufactor, model, papersize*, isindexable*, user*, group*
 Method: POST
@@ -48,6 +51,7 @@ Returns: Scanner object.
 }}}
 
 {{{
+Action: Get a scanner object using the name.
 URL: /scanner/[name]
 Args: None
 Method: GET, POST
@@ -55,6 +59,7 @@ Returns: Scanner object.
 }}}
 
 {{{
+Action: Modify a scanner configuration.
 URL: /scanner/[name]/modify
 Args: name*, localization*, description*, manufactor*, model*, papersize*, isindexable*, user, group
 Method: POST
@@ -62,6 +67,7 @@ Returns: Scanner object.
 }}}
 
 {{{
+Action: Removes a scanner.
 URL: /scanner/[name]/delete
 Args: None
 Method: DELETE
@@ -69,13 +75,15 @@ Returns: Default
 }}}
 
 {{{
-URL: /scanner/[name]/test
+Action: Get the scanner status code (See: ScannerStatusCode).
+URL: /scanner/[name]/status
 Args: None
 Method: GET, POST
 Returns: Default
 }}}
 
 {{{
+Action: Scan a page.
 URL: /scanner/[name]/scan
 Args: None
 Method: GET, POST
@@ -85,6 +93,7 @@ Return: Page object.
 === User ===
 
 {{{
+Action: List all registered users.
 URL: /user
 Args: None
 Method: GET, POST
@@ -92,6 +101,7 @@ Returns: Collection containing all user objects.
 }}}
 
 {{{
+Action: Add a new user.
 URL: /user.add
 Args: username, password, role
 Method: POST
@@ -99,6 +109,7 @@ Returns: User object.
 }}}
 
 {{{
+Action: Get an user object using the username.
 URL: /user/[username]
 Args: None
 Method: GET, POST
@@ -106,6 +117,7 @@ Returns: User object.
 }}}
 
 {{{
+Action: Modify an user registry.
 URL: /user/[username]/modify
 Args: username*, password*, role*
 Method: POST
@@ -113,6 +125,7 @@ Returns: User object.
 }}}
 
 {{{
+Action: Deletes an user.
 URL: /user/[username]/delete
 Args: None
 Method: DELETE
@@ -120,6 +133,7 @@ Returns: Default
 }}}
 
 {{{
+Action: List all the scanned (and not used) pages.
 URL: /user/[username]/pages
 Args: None
 Method: GET, POST
@@ -127,6 +141,7 @@ Returns: Collection of page objects.
 }}}
 
 {{{
+Action: List all the generated documents.
 URL: /user/[username]/document
 Args: None
 Method: GET, POST
@@ -134,6 +149,7 @@ Return: Collection of document objects.
 }}}
 
 {{{
+Action: Create a new document using the selected pages.
 URL: /user/[username]/document.create
 Args: docname, docdescript, pages (list of page ids)
 Method: GET, POST
@@ -141,6 +157,7 @@ Return: Document object.
 }}}
 
 {{{
+Action: Download a document using the docname.
 URL: /user/[username]/document/[docname]
 Args: None
 Method: GET, POST
@@ -150,6 +167,7 @@ Return: Downloadable PDF document.
 === Auth ===
 
 {{{
+Action: Authenticate an user.
 URL: /auth/signin
 Args: username, password
 Method: POST
@@ -157,6 +175,7 @@ Returns: Default
 }}}
 
 {{{
+Action: Sign out an user. 
 URL: /auth/signout
 Args: None
 Method: GET, POST
