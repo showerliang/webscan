@@ -13,7 +13,7 @@
 URL: /scanner
 Args: None
 Method: GET, POST
-Returns: Collection containing all scanner object.
+Returns: Collection containing all scanner objects.
 }}}
 
 {{{
@@ -32,7 +32,7 @@ Returns: Scanner object.
 
 {{{
 URL: /scanner/[name]/modify
-Args: id, localization, description, manufactor, model, papersize, isindexable, user, group
+Args: name, localization, description, manufactor, model, papersize, isindexable, user, group
 Method: POST
 Returns: Scanner object.
 }}}
@@ -77,7 +77,7 @@ Returns: User object.
 {{{
 URL: /user/[username]
 Args: None
-Method: POST
+Method: GET, POST
 Returns: User object.
 }}}
 
@@ -113,7 +113,7 @@ Return: Collection of document objects.
 URL: /user/[username]/document.create
 Args: docname, docdescript, pages (list of page ids)
 Method: GET, POST
-Return: Downloadable PDF document.
+Return: Document object.
 }}}
 
 {{{
