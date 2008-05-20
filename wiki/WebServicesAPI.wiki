@@ -34,56 +34,56 @@ ie:
 
 === Scanner ===
 
+Show all configured scanners:
 {{{
-Action: Show all configured scanners.
 URL: /scanner
 Args: None
 Method: GET, POST
 Returns: Collection containing all scanner objects.
 }}}
 
+Add a new scanner to the list:
 {{{
-Action: Add a new scanner to the list.
 URL: /scanner.add
 Args: name, localization*, description*, manufactor, model, papersize*, isindexable*, user*, group*
 Method: POST
 Returns: Scanner object.
 }}}
 
+Get a scanner object:
 {{{
-Action: Get a scanner object using the name.
 URL: /scanner/[name]
 Args: None
 Method: GET, POST
 Returns: Scanner object.
 }}}
 
+Modify a scanner configuration:
 {{{
-Action: Modify a scanner configuration.
 URL: /scanner/[name]/modify
 Args: name*, localization*, description*, manufactor*, model*, papersize*, isindexable*, user, group
 Method: POST
 Returns: Scanner object.
 }}}
 
+Removes a scanner:
 {{{
-Action: Removes a scanner.
 URL: /scanner/[name]/delete
 Args: None
 Method: DELETE
 Returns: Default
 }}}
 
+Get the scanner status code (See ScannerStatusCode):
 {{{
-Action: Get the scanner status code ( See: ScannerStatusCode ).
 URL: /scanner/[name]/status
 Args: None
 Method: GET, POST
 Returns: Default
 }}}
 
+Scan a page:
 {{{
-Action: Scan a page.
 URL: /scanner/[name]/scan
 Args: None
 Method: GET, POST
@@ -92,72 +92,72 @@ Return: Page object.
 
 === User ===
 
+List all registered users:
 {{{
-Action: List all registered users.
 URL: /user
 Args: None
 Method: GET, POST
 Returns: Collection containing all user objects.
 }}}
 
+Add a new user:
 {{{
-Action: Add a new user.
 URL: /user.add
 Args: username, password, role
 Method: POST
 Returns: User object.
 }}}
 
+Get an user object:
 {{{
-Action: Get an user object using the username.
 URL: /user/[username]
 Args: None
 Method: GET, POST
 Returns: User object.
 }}}
 
+Modify an user registry:
 {{{
-Action: Modify an user registry.
 URL: /user/[username]/modify
 Args: username*, password*, role*
 Method: POST
 Returns: User object.
 }}}
 
+Deletes an user:
 {{{
-Action: Deletes an user.
 URL: /user/[username]/delete
 Args: None
 Method: DELETE
 Returns: Default
 }}}
 
+List all the scanned (and not used) pages:
 {{{
-Action: List all the scanned (and not used) pages.
 URL: /user/[username]/pages
 Args: None
 Method: GET, POST
 Returns: Collection of page objects.
 }}}
 
+List all the generated documents:
 {{{
-Action: List all the generated documents.
 URL: /user/[username]/document
 Args: None
 Method: GET, POST
 Return: Collection of document objects.
 }}}
 
+Create a new document using the selected pages:
 {{{
-Action: Create a new document using the selected pages.
 URL: /user/[username]/document.create
 Args: docname, docdescript, pages (list of page ids)
 Method: GET, POST
 Return: Document object.
 }}}
 
+Download a document using the docname:
 {{{
-Action: Download a document using the docname.
 URL: /user/[username]/document/[docname]
 Args: None
 Method: GET, POST
@@ -166,16 +166,16 @@ Return: Downloadable PDF document.
 
 === Auth ===
 
+Authenticate an user:
 {{{
-Action: Authenticate an user.
 URL: /auth/signin
 Args: username, password
 Method: POST
 Returns: Default
 }}}
 
+Sign out an user:
 {{{
-Action: Sign out an user. 
 URL: /auth/signout
 Args: None
 Method: GET, POST
