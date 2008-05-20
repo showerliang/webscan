@@ -75,7 +75,7 @@ Returns: Default
 }}}
 
 {{{
-Action: Get the scanner status code (See: WikiScannerStatusCode).
+Action: Get the scanner status code (See: ScannerStatusCode).
 URL: /scanner/[name]/status
 Args: None
 Method: GET, POST
