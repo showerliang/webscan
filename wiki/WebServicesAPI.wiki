@@ -1,13 +1,38 @@
 #summary Web Services API.
-#labels Phase-Design,Phase-Implementation
+#labels Phase-Design,Phase-Implementation,Not-Implemented
 
 = Web Services API =
 
+== Important Considerations ==
+
  # All returns are JSON.
  # The default return is an associative array containing the error code and msg. If the error code is equal to 0 (zero) there is no errors.
+ # Arguments marked with `*` are optional.
+ 
+== Concepts ==
 
-== Scanner services: ==
- # *Arguments marked with `*` are mandatory.*
+ * Instanced object
+ * Collection:
+ * Method 
+
+
+A string followed by / (slash) in an URL represents object members (method or object) and followed by . (dot) represents collection members.
+
+ie:
+
+ * *modify* is a method of an instanced object scanner:
+{{{
+/scanner/[name]/modify
+}}}
+
+ * *add* is a method of the collection of scanners:
+{{{
+/scanner.add
+}}}
+
+== Services ==
+
+=== Scanner ===
 
 {{{
 URL: /scanner
@@ -58,7 +83,7 @@ Method: GET, POST
 Return: Page object.
 }}}
 
-== User services: ==
+=== User ===
 
 {{{
 URL: /user
@@ -123,7 +148,7 @@ Method: GET, POST
 Return: Downloadable PDF document.
 }}}
 
-== Auth Methods: ==
+=== Auth ===
 
 {{{
 URL: /auth/signin
