@@ -11,10 +11,9 @@
  
 == Concepts ==
 
- * Instanced object
- * Collection:
- * Method 
-
+ * Method
+ * Instanced Object
+ * Collection (list of instanced objects)
 
 A string followed by / (slash) in an URL represents object members (method or object) and followed by . (dot) represents collection members.
 
@@ -43,7 +42,7 @@ Returns: Collection containing all scanner objects.
 
 {{{
 URL: /scanner.add
-Args: name*, localization, description, manufactor*, model*, papersize, isindexable, user, group
+Args: name, localization*, description*, manufactor, model, papersize*, isindexable*, user*, group*
 Method: POST
 Returns: Scanner object.
 }}}
@@ -57,7 +56,7 @@ Returns: Scanner object.
 
 {{{
 URL: /scanner/[name]/modify
-Args: name, localization, description, manufactor, model, papersize, isindexable, user, group
+Args: name*, localization*, description*, manufactor*, model*, papersize*, isindexable*, user, group
 Method: POST
 Returns: Scanner object.
 }}}
@@ -108,7 +107,7 @@ Returns: User object.
 
 {{{
 URL: /user/[username]/modify
-Args: username, password, role
+Args: username*, password*, role*
 Method: POST
 Returns: User object.
 }}}
