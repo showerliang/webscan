@@ -1,0 +1,5 @@
+#summary List of the scanner status code
+
+ * 0
+ * 1
+ * 2
