@@ -45,7 +45,7 @@ Returns: Collection containing all scanner objects.
 Add a new scanner to the list:
 {{{
 URL: /scanner.add
-Args: name, localization*, description*, manufactor, model, papersize*, isindexable*, user*, group*
+Args: name, location*, description*, manufacturer, model, papersize*, isindexable*, user*, group*
 Method: POST
 Returns: Scanner object.
 }}}
@@ -61,7 +61,7 @@ Returns: Scanner object.
 Modify a scanner configuration:
 {{{
 URL: /scanner/[name]/modify
-Args: name*, localization*, description*, manufactor*, model*, papersize*, isindexable*, user, group
+Args: name*, location*, description*, manufacturer*, model*, papersize*, isindexable*, user, group
 Method: POST
 Returns: Scanner object.
 }}}
