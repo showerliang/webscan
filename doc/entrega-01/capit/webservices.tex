@@ -2,8 +2,10 @@
 \section{Web Services}
 \label{sec:web_services}
 
-Nesta seção será descrita toda a {\it API} utilizada para acessar a aplicação
-através de {\it Web Services}. A seção \ref{sec:premissas} apresenta as 
+\subsection{Introdução}
+Para o uso do sistema {\it WebScan} em uma rede de computadores, é de interesse que o sistema possa ser usado remotamente. Para que isso seja feito com sucesso, será feita uma interface em forma de {\it Web Services}, para que aplicações distribuídas em uma rede consigam comunicar-se de forma efetiva com o {\it WebScan}.
+
+Assim, nessa seção será descrita a API ({\it Application Programming Interface}) utilizada para acessar a aplicação através de {\it Web Services}. A seção \ref{sec:premissas} apresenta as 
 premissas que devem ser levadas e a \ref{sec:convencoes} as convenções em conta ao se analisar a {\it API}.  
 
  
@@ -11,10 +13,10 @@ premissas que devem ser levadas e a \ref{sec:convencoes} as convenções em cont
 \label{sec:premissas}
 
 \begin{enumerate}
-    \item Todas os textos entre [] são variáveis;
+    \item Todas os textos entre [] são variáveis; 
     \item Todos os retornos são JSON;
     \item O retorno default é um array associativo que contém um código de 
-            erro e sua respectiva mensagem. Se o código de erro for 0 (zero)
+            erro e sua respectiva mensagem. Se o c ódigo de erro for 0 (zero)
             quer dizer que não forão encontrados erros;
     \item Os argumentos iniciados com * são opcionais.
 \end{enumerate}
@@ -25,7 +27,7 @@ premissas que devem ser levadas e a \ref{sec:convencoes} as convenções em cont
 Nesta seção serão utilizados os seguintes conceitos:
 
 \begin{itemize}
-    \item Método
+    \item Método 
     \item Objeto instanciado
     \item Coleção (lista de objetos instanciados)
 \end{itemize}
@@ -56,7 +58,7 @@ O método {\bf add} é parde de uma coleção de scanners:
 URL: /scanner
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: Collection containing all scanner objects.
+Retorna: Coleção contendo todos os objetos scanner.
 \end{verbatim}
 
 \item Adicionar um novo {\it scanners}:
@@ -65,7 +67,7 @@ URL: /scanner.add
 Argumentos: name, localization*, description*, manufacturer, 
     model, papersize*, isindexable*, user*, group*
 Método: POST
-Retorna: Scanner object.
+Retorna: Objeto scanner.
 \end{verbatim}
 
 \item Retornar um objeto {\it scanner}:
@@ -73,7 +75,7 @@ Retorna: Scanner object.
 URL: /scanner/[name]
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: Scanner object.
+Retorna: Objeto scanner.
 \end{verbatim}
 
 \item Modificar a configuração de um {\it scanner}:
@@ -82,7 +84,7 @@ URL: /scanner/[name]/modify
 Argumentos: name*, localization*, description*, manufacturer*, 
     model*, papersize*, isindexable*, user, group
 Método: POST
-Retorna: Scanner object.
+Retorna: Objeto scanner.
 \end{verbatim}
 
 \item Remover um {\it scanner}:
@@ -106,7 +108,7 @@ Retorna: Default
 URL: /scanner/[name]/scan
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: Page object.
+Retorna: Objeto page.
 \end{verbatim}
 
 \end{itemize}
@@ -120,7 +122,7 @@ Retorna: Page object.
 URL: /user
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: Collection containing all user objects.
+Retorna: Coleção contendo todos os objetos user.
 \end{verbatim}
 
 \item Adicionar um novo usuário:
@@ -128,7 +130,7 @@ Retorna: Collection containing all user objects.
 URL: /user.add
 Argumentos: username, password, role
 Método: POST
-Retorna: User object.
+Retorna: Objeto user.
 \end{verbatim}
 
 \item Retornar um objeto usuário:
@@ -136,7 +138,7 @@ Retorna: User object.
 URL: /user/[username]
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: User object.
+Retorna: Objeto user.
 \end{verbatim}
 
 \item Modificar o registro de um usuário:
@@ -144,7 +146,7 @@ Retorna: User object.
 URL: /user/[username]/modify
 Argumentos: username*, password*, role*
 Método: POST
-Retorna: User object.
+Retorna: Objeto user.
 \end{verbatim}
 
 \item Deletar um usuário:
@@ -160,7 +162,7 @@ Retorna: Default
 URL: /user/[username]/page
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: Collection of page objects.
+Retorna: Coleção com todos os objetos page.
 \end{verbatim}
 
 \item Deletar uma página: 
@@ -176,7 +178,7 @@ Retorna: Default
 URL: /user/[username]/document
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: Collection of document objects.
+Retorna: Coleção com todos os objetos page.
 \end{verbatim}
 
 \item Deletar um documento: 
@@ -192,7 +194,7 @@ Retorna: Default
 URL: /user/[username]/document.create
 Argumentos: docname, docdescript, pages (lista de pageid)
 Método: GET, POST
-Retorna: Document object.
+Retorna: Objeto document.
 \end{verbatim}
 
 \item Baixar um documento digitalizado:
@@ -200,7 +202,7 @@ Retorna: Document object.
 URL: /user/[username]/document/[docname]
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: Downloadable PDF document.
+Retorna: Documento PDF para {\it download}.
 \end{verbatim}
 
 \end{itemize}
