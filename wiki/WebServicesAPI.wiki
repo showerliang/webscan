@@ -142,7 +142,7 @@ Returns: Collection of page objects.
 
 Delete a page:
 {{{
-URL: /user/[username]/page/delete
+URL: /user/[username]/page/[pageid]/delete
 Args: None
 Method: DELETE
 Returns: Default
@@ -166,7 +166,7 @@ Return: Document object.
 
 Delete a document:
 {{{
-URL: /user/[username]/document/delete
+URL: /user/[username]/document/[docname]/delete
 Args: None
 Method: DELETE
 Return: Default
