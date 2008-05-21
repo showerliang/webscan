@@ -1,0 +1,212 @@
+
+\section{Web Services}
+\label{sec:web_services}
+
+Nesta seção será descrita toda a {\it API} utilizada para acessar a aplicação
+através de {\it Web Services}. A seção \ref{sec:premissas} apresenta as 
+premissas que devem ser levadas e a \ref{sec:convencoes} as convenções em conta ao se analisar a {\it API}.  
+
+ 
+\subsection{Premissas}
+\label{sec:premissas}
+
+\begin{enumerate}
+    \item Todas os textos entre [] são variáveis;
+    \item Todos os retornos são JSON;
+    \item O retorno default é um array associativo que contém um código de 
+            erro e sua respectiva mensagem. Se o código de erro for 0 (zero)
+            quer dizer que não forão encontrados erros;
+    \item Os argumentos iniciados com * são opcionais.
+\end{enumerate}
+ 
+\subsection{Convenções}
+\label{sec:convencoes}
+
+Nesta seção serão utilizados os seguintes conceitos:
+
+\begin{itemize}
+    \item Método
+    \item Objeto instanciado
+    \item Coleção (lista de objetos instanciados)
+\end{itemize}
+
+Um texto seguido por / (barra) em uma URL representa membros de um objeto 
+instanciado, e os seguidos por . (ponto) representam membros de uma coleção. 
+Por exemplo:
+
+O método {\bf modify} é parte de um objeto instanciado do tipo scanner:
+\begin{verbatim}
+    /scanner/[name]/modify
+\end{verbatim}
+
+O método {\bf add} é parde de uma coleção de scanners:
+\begin{verbatim}
+    /scanner.add
+\end{verbatim}
+
+\subsection{Serviços disponíveis}
+\label{sec:servicos_disponiveis}
+
+\subsubsection{Scanner}
+
+\begin{itemize}
+
+\item Mostrar os {\it scanners} configurados:
+\begin{verbatim}
+URL: /scanner
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Collection containing all scanner objects.
+\end{verbatim}
+
+\item Adicionar um novo {\it scanners}:
+\begin{verbatim}
+URL: /scanner.add
+Argumentos: name, localization*, description*, manufactor, 
+    model, papersize*, isindexable*, user*, group*
+Método: POST
+Retorna: Scanner object.
+\end{verbatim}
+
+\item Retornar um objeto {\it scanner}:
+\begin{verbatim}
+URL: /scanner/[name]
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Scanner object.
+\end{verbatim}
+
+\item Modificar a configuração de um {\it scanner}:
+\begin{verbatim}
+URL: /scanner/[name]/modify
+Argumentos: name*, localization*, description*, manufactor*, 
+    model*, papersize*, isindexable*, user, group
+Método: POST
+Retorna: Scanner object.
+\end{verbatim}
+
+\item Remover um {\it scanner}:
+\begin{verbatim}
+URL: /scanner/[name]/delete
+Argumentos: Nenhum
+Método: DELETE
+Retorna: Default
+\end{verbatim}
+
+\item Retornar o código de status do {\it scanner}:
+\begin{verbatim}
+URL: /scanner/[name]/status
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Default
+\end{verbatim}
+
+\item Digitalizar uma página:
+\begin{verbatim}
+URL: /scanner/[name]/scan
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Page object.
+\end{verbatim}
+
+\end{itemize}
+
+\subsubsection{User}
+
+\begin{itemize}
+
+\item Listar todos os usuários registrados:
+\begin{verbatim}
+URL: /user
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Collection containing all user objects.
+\end{verbatim}
+
+\item Adicionar um novo usuário:
+\begin{verbatim}
+URL: /user.add
+Argumentos: username, password, role
+Método: POST
+Retorna: User object.
+\end{verbatim}
+
+\item Retornar um objeto usuário:
+\begin{verbatim}
+URL: /user/[username]
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: User object.
+\end{verbatim}
+
+\item Modificar o registro de um usuário:
+\begin{verbatim}
+URL: /user/[username]/modify
+Argumentos: username*, password*, role*
+Método: POST
+Retorna: User object.
+\end{verbatim}
+
+\item Deletar um usuário:
+\begin{verbatim}
+URL: /user/[username]/delete
+Argumentos: Nenhum
+Método: DELETE
+Retorna: Default
+\end{verbatim}
+
+\item Listar de todos as páginas digitalizadas e não utilizadas: 
+\begin{verbatim}
+URL: /user/[username]/pages
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Collection of page objects.
+\end{verbatim}
+
+\item Listar os documentos gerados:
+\begin{verbatim}
+URL: /user/[username]/document
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Collection of document objects.
+\end{verbatim}
+
+\item Criar um novo documento usando as páginas selecionadas:
+\begin{verbatim}
+URL: /user/[username]/document.create
+Argumentos: docname, docdescript, pages (list of page ids)
+Método: GET, POST
+Retorna: Document object.
+\end{verbatim}
+
+\item Baixar um documento digitalizado:
+\begin{verbatim}
+URL: /user/[username]/document/[docname]
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Downloadable PDF document.
+\end{verbatim}
+
+\end{itemize}
+
+\subsubsection{Auth}
+
+\begin{itemize}
+
+\item Autenticar um usuário:
+\begin{verbatim}
+URL: /auth/signin
+Argumentos: username, password
+Método: POST
+Retorna: Default
+\end{verbatim}
+
+\item Desautenticar um usuário:
+\begin{verbatim}
+URL: /auth/signout
+Argumentos: Nenhum
+Método: GET, POST
+Retorna: Default
+\end{verbatim} 
+
+\end{itemize}
