@@ -157,10 +157,18 @@ Retorna: Default
 
 \item Listar de todos as páginas digitalizadas e não utilizadas: 
 \begin{verbatim}
-URL: /user/[username]/pages
+URL: /user/[username]/page
 Argumentos: Nenhum
 Método: GET, POST
 Retorna: Collection of page objects.
+\end{verbatim}
+
+\item Deletar uma página: 
+\begin{verbatim}
+URL: /user/[username]/page/[pageid]/delete
+Argumentos: Nenhum
+Método: DELETE
+Retorna: Default 
 \end{verbatim}
 
 \item Listar os documentos gerados:
@@ -171,10 +179,18 @@ Método: GET, POST
 Retorna: Collection of document objects.
 \end{verbatim}
 
+\item Deletar um documento: 
+\begin{verbatim}
+URL: /user/[username]/document/[docname]/delete
+Argumentos: Nenhum
+Método: DELETE
+Retorna: Default 
+\end{verbatim}
+
 \item Criar um novo documento usando as páginas selecionadas:
 \begin{verbatim}
 URL: /user/[username]/document.create
-Argumentos: docname, docdescript, pages (list of page ids)
+Argumentos: docname, docdescript, pages (lista de pageid)
 Método: GET, POST
 Retorna: Document object.
 \end{verbatim}
