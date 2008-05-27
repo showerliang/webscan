@@ -9,6 +9,4 @@
 
 == TODO ==
 
-=== Documento de Projeto === 
-
- * Definir: OCR, API, WebServices
+Ver issues do tipo "Task".
