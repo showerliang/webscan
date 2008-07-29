@@ -3,11 +3,9 @@
 \label{sec:web_services}
 
 \subsection{Introdução}
-Para o uso do sistema {\it WebScan} em uma rede de computadores, é de interesse que o sistema possa ser usado remotamente. Para que isso seja feito com sucesso, será feita uma interface em forma de {\it Web Services}, para que aplicações distribuídas em uma rede consigam comunicar-se de forma efetiva com o {\it WebScan}.
+Para o uso do sistema {\it WebScan} em uma rede de computadores, é de interesse que o sistema possa ser usado remotamente. Para que isso seja feito com sucesso, será feita uma interface em forma de {\it Web Services}, para que aplicações distribuídas em uma rede consigam comunicar-se de forma efetiva com o {\it webscan}.
 
-Assim, nessa seção será descrita a API ({\it Application Programming Interface}) utilizada para acessar a aplicação através de {\it Web Services}. A seção \ref{sec:premissas} apresenta as 
-premissas que devem ser levadas e a \ref{sec:convencoes} as convenções em conta ao se analisar a {\it API}.  
-
+Assim, nessa seção será descrita a API ({\it Application Programming Interface}) utilizada para acessar a aplicação através de {\it Web Services}. As seções \ref{sec:premissas} e \ref{sec:convencoes} apresentam respectivamente as premissas e convenções que devem ser levadas em consideração ao se analisar a {\it API}.  
  
 \subsection{Premissas}
 \label{sec:premissas}
@@ -41,12 +39,12 @@ O método {\bf modify} é parte de um objeto instanciado do tipo scanner:
     /scanner/[name]/modify
 \end{verbatim}
 
-O método {\bf add} é parde de uma coleção de scanners:
+O método {\bf add} é parte de uma coleção de scanners:
 \begin{verbatim}
     /scanner.add
 \end{verbatim}
 
-\subsection{Serviços disponíveis}
+\subsection{Serviços Disponíveis}
 \label{sec:servicos_disponiveis}
 
 \subsubsection{Scanner}
@@ -61,7 +59,7 @@ Método: GET, POST
 Retorna: Coleção contendo todos os objetos scanner.
 \end{verbatim}
 
-\item Adicionar um novo {\it scanners}:
+\item Adicionar um novo {\it scanner}:
 \begin{verbatim}
 URL: /scanner.add
 Argumentos: name, localization*, description*, manufacturer, 
@@ -202,7 +200,7 @@ Retorna: Objeto document.
 URL: /user/[username]/document/[docname]
 Argumentos: Nenhum
 Método: GET, POST
-Retorna: Documento PDF para {\it download}.
+Retorna: Documento PDF para download.
 \end{verbatim}
 
 \end{itemize}
