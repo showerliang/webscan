@@ -1,4 +1,4 @@
-from webscan.lib.action import BaseAction
+from webscan.core.action import BaseAction
 
 class OCR(BaseAction):
 
