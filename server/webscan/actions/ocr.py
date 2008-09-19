@@ -58,13 +58,8 @@ def perform_cleanup(scratch_image, output):
             os.remove(name)
         except OSError:
             pass
+
 class OCR(BaseAction):
 
-    def run(self, pipeline_args):
-        #TODO: Get image path using username and image id
-        image_path = 
-        pipeline_args['ocr_text'] = image_to_string(image_path)
-        print pipeline_args.update(self.args)
-
-
-
+    def run(self, pipeline):
+        self.image_text = image_to_string(pipeline.image_path)

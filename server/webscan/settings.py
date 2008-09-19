@@ -1,12 +1,12 @@
 
-DRIVER_WRAPPER = "sane"
+DRIVER_WRAPPER = 'sane'
 
 ACTIONS = (
     ('pdf', 'webscan.actions.pdf.PDF'),
     ('ocr', 'webscan.actions.ocr.OCR'),
 )
 
-
+USER_SPACE = '/home/webscan/userspace/'
 
 # Django settings for webscan project.
 
