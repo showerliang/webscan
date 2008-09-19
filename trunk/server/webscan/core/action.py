@@ -1,23 +1,19 @@
 from webscan import settings
-
+from webscan.lib.struct import odict
 
 class Pipeline(object):
     def __init__(self, username, image):
-        self.actions = []
-        
+        self.actions = odict()
         # Use username and image id to define the image_path
-        image_path = ""
-        self.args = {"image_path": image_path}
-  
-    def registerAction(self, action):
-        self.actions.append(action)
+        # TODO:
+        self.image_path = settings.USER_SPACE + '/' + username + '/' + image
+    def registerAction(self, action_name, action):
+        self.actions[action_name] = action
         #TODO: Check if action is instance of a subclass of BaseAction if not raise exception and log
 
     def run(self):
         for action in self.actions:
-            action.run(self.args)
-        
-        return self.args
+            action.run(self)
          
     
 class BaseAction(object):
@@ -50,14 +46,10 @@ def import_action(action_name):
 
 def run_actions(username, image, actionList):
     pipeline = Pipeline(username, image)
-
     for action in actionList:
         Action = import_action(action['name'])
-        for i in dir(Action):
-            print i, eval("Action."+i)
         actionObj = Action(action['args'])
-        print issubclass(actionObj.__class__, BaseAction)
-        pipeline.registerAction(actionObj)
+        pipeline.registerAction(action['name'], actionObj)
         
     return pipeline.run()
 
