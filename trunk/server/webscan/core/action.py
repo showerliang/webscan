@@ -6,7 +6,9 @@ class Pipeline(object):
         self.actions = odict()
         # Use username and image id to define the image_path
         # TODO:
-        self.image_path = settings.USER_SPACE + '/' + username + '/' + image
+        self.userspace = settings.USER_SPACE + '/' + username + '/'
+        self.image_path = self.userspace + image
+
     def registerAction(self, action_name, action):
         self.actions[action_name] = action
         #TODO: Check if action is instance of a subclass of BaseAction if not raise exception and log
@@ -36,6 +38,7 @@ def import_action(action_name):
     except ValueError:
         raise Exception, '%s isn\'t a action' % action_path
     ac_module, ac_classname = action_path[:dot], action_path[dot+1:]
+
     try:
         mod = __import__(ac_module,fromlist=[ac_classname])
         ac_class = getattr(mod, ac_classname)
@@ -48,8 +51,10 @@ def run_actions(username, image, actionList):
     pipeline = Pipeline(username, image)
     for action in actionList:
         Action = import_action(action['name'])
-        actionObj = Action(action['args'])
-        pipeline.registerAction(action['name'], actionObj)
-        
+        try:
+            actionObj = Action(action['args'])
+        except KeyError:
+            actionObj = Action({})
+        pipeline.registerAction(action['name'], actionObj)        
     return pipeline.run()
 
