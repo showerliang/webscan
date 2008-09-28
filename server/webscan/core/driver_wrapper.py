@@ -1,11 +1,22 @@
 
-class BaseDriverWrapper(object):
+class BaseScannerCollectionWrapper(list):
 
+    def __init__(self):
+        print "Not Implemented"
+    
+    def getScanner(self):
+        print "Not Implemented"
+
+class BaseScannerWrapper(object):
+
+    def __init__(self):
+        print "Not Implemented"
+    
     def scan(self):
         print "Not Implemented"
 
-    def config(self):
+    def info(self):
         print "Not Implemented"
-
+    
     def status(self):
         print "Not Implemented"
