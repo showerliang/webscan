@@ -6,6 +6,9 @@ class BaseScannerCollectionWrapper(list):
     
     def getScanner(self):
         print "Not Implemented"
+    
+    def list(self):
+        return self
 
 class BaseScannerWrapper(object):
 
