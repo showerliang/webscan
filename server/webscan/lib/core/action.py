@@ -1,5 +1,5 @@
-from webscan import settings
-from webscan.lib.struct import odict
+from webscan.lib.conf import settings
+from webscan.lib.type import odict
 
 class Pipeline(object):
     def __init__(self, username, image):
