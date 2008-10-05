@@ -1,7 +1,7 @@
 """
 Settings and configuration for Webscan. (Copied from Django project)
 
-Values will be read from the module specified by the WEBSCAN_SETTINGS_MODULE environment
+Values will be read from the module specified by the WEBSCAN_CONF environment
 variable, and then from webscan.lib.conf.global_settings; see the global settings file for
 a list of all possible variables.
 """
@@ -10,13 +10,13 @@ import os
 import time     # Needed for Windows
 from webscan.lib.conf import global_settings
 
-ENVIRONMENT_VARIABLE = "WEBSCAN_SETTINGS_MODULE"
+ENVIRONMENT_VARIABLE = "WEBSCAN_CONF"
 
 class LazySettings(object):
     """
     A lazy proxy for either global Webscan settings or a custom settings object.
     The user can manually configure settings prior to using them. Otherwise,
-    Webscan uses the settings module pointed to by WEBSCAN_SETTINGS_MODULE.
+    Webscan uses the settings module pointed to by WEBSCAN_CONF.
 
     """
     def __init__(self):
@@ -55,7 +55,8 @@ class LazySettings(object):
         except KeyError:
             # NOTE: This is arguably an EnvironmentError, but that causes
             # problems with Python's interactive help.
-            raise ImportError("Settings cannot be imported, because environment variable %s is undefined." % ENVIRONMENT_VARIABLE)
+            settings_module = None
+            #raise ImportError("Settings cannot be imported, because environment variable %s is undefined." % ENVIRONMENT_VARIABLE)  
 
         self._target = Settings(settings_module)
 
@@ -86,45 +87,25 @@ class Settings(object):
             if setting == setting.upper():
                 setattr(self, setting, getattr(global_settings, setting))
 
-        # store the settings module in case someone later cares
-        self.SETTINGS_MODULE = settings_module
+        if settings_module:
+            # store the settings module in case someone later cares
+            self.SETTINGS_MODULE = settings_module
 
-        try:
-            mod = __import__(self.SETTINGS_MODULE, {}, {}, [''])
-        except ImportError, e:
-            raise ImportError, "Could not import settings '%s' (Is it on sys.path? Does it have syntax errors?): %s" % (self.SETTINGS_MODULE, e)
+            try:
+                mod = __import__(self.SETTINGS_MODULE, {}, {}, [''])
+            except ImportError, e:
+                raise ImportError, "Could not import settings '%s' (Is it on sys.path? Does it have syntax errors?): %s" % (self.SETTINGS_MODULE, e)
 
-        # Settings that should be converted into tuples if they're mistakenly entered
-        # as strings.
-        tuple_settings = ("INSTALLED_APPS", "TEMPLATE_DIRS")
+            # Settings that should be converted into tuples if they're mistakenly entered
+            # as strings.
+            tuple_settings = ("ACTIONS", )
 
-        for setting in dir(mod):
-            if setting == setting.upper():
-                setting_value = getattr(mod, setting)
-                if setting in tuple_settings and type(setting_value) == str:
-                    setting_value = (setting_value,) # In case the user forgot the comma.
-                setattr(self, setting, setting_value)
-
-        # Expand entries in INSTALLED_APPS like "django.contrib.*" to a list
-        # of all those apps.
-        new_installed_apps = []
-        for app in self.INSTALLED_APPS:
-            if app.endswith('.*'):
-                appdir = os.path.dirname(__import__(app[:-2], {}, {}, ['']).__file__)
-                app_subdirs = os.listdir(appdir)
-                app_subdirs.sort()
-                for d in app_subdirs:
-                    if d.isalpha() and os.path.isdir(os.path.join(appdir, d)):
-                        new_installed_apps.append('%s.%s' % (app[:-2], d))
-            else:
-                new_installed_apps.append(app)
-        self.INSTALLED_APPS = new_installed_apps
-
-        if hasattr(time, 'tzset'):
-            # Move the time zone info into os.environ. See ticket #2315 for why
-            # we don't do this unconditionally (breaks Windows).
-            os.environ['TZ'] = self.TIME_ZONE
-            time.tzset()
+            for setting in dir(mod):
+                if setting == setting.upper():
+                    setting_value = getattr(mod, setting)
+                    if setting in tuple_settings and type(setting_value) == str:
+                        setting_value = (setting_value,) # In case the user forgot the comma.
+                    setattr(self, setting, setting_value)
 
     def get_all_members(self):
         return dir(self)
@@ -151,5 +132,3 @@ class UserSettingsHolder(object):
         return dir(self) + dir(self.default_settings)
 
 settings = LazySettings()
-if not settings.configured:
-    settings.configure()

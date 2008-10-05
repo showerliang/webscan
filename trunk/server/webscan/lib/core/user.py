@@ -30,7 +30,7 @@ class User(object):
         return True
 
     def list_image_groups(self):
-       return os.listdir(self.__userspace_path__)
+        return os.listdir(self.__userspace_path__)
 
     def list_images(self, group='default'):
         return os.listdir(self.__userspace_path__ + '/' + group)

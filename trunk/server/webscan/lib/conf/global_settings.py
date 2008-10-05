@@ -8,5 +8,5 @@ ACTIONS = (
     ('ocr', 'webscan.actions.ocr.OCR'),
 )
 
-USER_SPACE = '/home/webscan/userspace/'
+USER_SPACE = 'userspace/'
 
