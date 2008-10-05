@@ -2,6 +2,7 @@ import simplejson
 import os
 from django.http import HttpResponse, HttpResponseForbidden
 from django.core.servers.basehttp import FileWrapper
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required as django_login_required
 
 def json(view):
@@ -30,8 +31,14 @@ def login_required(view):
     def decorator(request, username=None, *args):
         if not username:
             username = request.user.username
-        
-        elif not request.user.is_superuser and username != request.user.username:
-            return HttpResponseForbidden()
+        else:
+            try:
+                User.objects.get(username=username)
+            except:
+                raise Exception("User '%s' doesn't exists" % username)
+
+            if not request.user.is_superuser and username != request.user.username:
+                return HttpResponseForbidden()
+
         return view(request, username, *args)
     return django_login_required(decorator)
