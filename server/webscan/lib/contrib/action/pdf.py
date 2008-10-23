@@ -8,7 +8,7 @@ class PDF(BaseAction):
 
     def run(self, pipeline):
         # TODO: Implement variable name for the document 
-        self.doc_path = pipeline.userspace + 'doc.pdf'
+        self.doc_path = pipeline.userspace + pipeline.doc_name
         c = canvas.Canvas(self.doc_path, pagesize=letter)
         width, height = letter
         
