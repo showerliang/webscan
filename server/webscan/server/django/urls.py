@@ -1,6 +1,5 @@
 from django.conf.urls.defaults import *
 from webscan.server.django import views
-from webscan.lib.conf import settings
 
 urlpatterns = patterns('',
     url (r'scanner/$', views.scanner.list, name='list-scanners'),
