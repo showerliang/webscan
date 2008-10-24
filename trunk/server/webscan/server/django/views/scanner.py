@@ -1,7 +1,7 @@
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from webscan.server.django.utils import json
+from webscan.server.django.utils import json, login_required
 from webscan.lib.core import scanners
 from webscan.lib.core.user import User
 
@@ -13,15 +13,15 @@ def list(request):
 @login_required
 @json
 def get(request, id):
-    return str(scanners.get(id))
+    return scanners.get(id).info()
 
 @login_required
 @json
-def scan(request, scanner_id):
+def scan(request, id):
     try:
         image_name = request.GET['img_name']
     except Exception, e:
-        raise Exception("The GET argument 'img_name' is mandatory")
+        return {'error_msg': "The GET argument 'img_name' is mandatory"}
 
     user = User(request.user.username)
     
@@ -30,10 +30,11 @@ def scan(request, scanner_id):
     except:
         image_group = 'default' 
     
-    ok = user.scan(scanner_id, image_name, image_group)
-    if ok:
+    try:
+        user.scan(id, image_name, image_group)
         host = 'http://'+request.get_host()
         host_image = reverse('get-image',args=(user.username, image_group, image_name))+'.tif'
         return host + host_image
-    else:
-        return None
+    except Exception, e:
+        return {'error_msg': e.message}
+        

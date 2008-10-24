@@ -1,5 +1,5 @@
 
-class BaseScannerCollectionWrapper(list):
+class BaseScannerCollectionWrapper(object):
 
     def __init__(self):
         print "Not Implemented"
