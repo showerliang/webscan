@@ -2,6 +2,9 @@ import os
 import Image
 from daemon.scanning.lib.page import Page
 
+from pilpe import Pipeline
+from pilpe.plugins import OCR, PDF
+
 class Document(object): 
     def __init__(self, name, user):
         self.name = name
@@ -9,7 +12,7 @@ class Document(object):
         self.rawpath = "%s/%s/raw" % (user.docdir, name)
         self.viewpath = "%s/%s/view" % (user.docdir, name)
         self.thumbpath = "%s/%s/thumb" % (user.docdir, name)
-        
+    
         if not os.path.exists(self.path):
             os.mkdir(self.path)
             os.mkdir(self.rawpath)
@@ -32,3 +35,27 @@ class Document(object):
             pagename = os.path.splitext(pagename)[0]
             page = self.getpage(pagename)
             self.pages.update({page.name:page})
+
+    def topdf(self, doctitle, pagenames, lang=None):
+        images_path = [ "%s/%s.tiff" % (self.rawpath, pagename) for pagename in pagenames ]
+        print images_path    
+
+        config = {}
+        if lang:
+            config['lang'] = lang
+
+        ocr = OCR(config)
+
+        pdfpath = "%s/%s.pdf" % (self.path, self.name)
+        pdf = PDF({
+            'path': pdfpath, 
+            'title': doctitle,
+        })
+
+        pipeline = Pipeline()
+        pipeline.register(ocr)
+        pipeline.register(pdf)
+        pipeline.run(images_path)
+      
+        return pdfpath 
+    

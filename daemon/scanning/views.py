@@ -1,7 +1,9 @@
 import os
+
 from django.http import HttpResponseNotFound
 from django.core.urlresolvers import reverse
 import pyscanning as scanners
+import simplejson
 
 from daemon.scanning.lib.user import User
 from daemon.utils import json, send_file
@@ -67,3 +69,22 @@ def list_doc_pages(request, username, docname):
     doc = user.getdocument(docname)
     pages = doc.pages
     return [ pages[key].name for key in pages ]
+
+def get_pdf_document(request, username, docname):
+    user = User(username)
+    
+    docname_without_ext = os.path.splitext(docname)[0]
+    doc = user.getdocument(docname_without_ext)
+
+    if doc is not None:
+        pages = simplejson.loads(request.GET.get('pages'))
+        doctitle = request.GET.get('doctitle')
+        lang = request.GET.get('lang')
+
+        docpath = doc.topdf(doctitle, pages, lang)
+
+        if os.path.exists(docpath):
+            return send_file(request, docpath, 'application/pdf')
+
+    return HttpResponseNotFound()
+
