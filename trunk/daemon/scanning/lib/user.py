@@ -51,4 +51,3 @@ class User(object):
     
     def getdocument(self, docname):
         return self.documents.get(docname)
-    
