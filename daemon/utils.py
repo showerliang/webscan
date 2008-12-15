@@ -7,7 +7,9 @@ def json(view):
     def decorator(request, *args, **kwargs):
         response = view(request, *args, **kwargs)
         try:
-            JSONresponse = simplejson.dumps(response)
+            callback = request.REQUEST.get('callback')
+            if not callback: callback = ''
+            JSONresponse = "%s(%s)" % (callback, simplejson.dumps(response))
         except Exception, e:
             raise e     
         return HttpResponse(JSONresponse)
