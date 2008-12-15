@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>Webscan</title> 
+    
+        <script type="text/javascript" src='js/third-party/jquery-1.2.6.js'></script>
+        <script type="text/javascript" src='js/third-party/jquery-ui-personalized-1.5.3.min.js'></script>
+        <script type="text/javascript" src='js/third-party/jquery.tooltip.min.js'></script>
+        <script type="text/javascript" src='js/third-party/json2.js'></script>
+
+        <script type="text/javascript" src='js/ajax.js'></script>
+        <script type="text/javascript" src='js/scanner.js'></script>
+        <script type="text/javascript" src='js/user.js'></script>
+        <script type="text/javascript" src='js/ui.js'></script>
+        <script type="text/javascript" src='js/init.js'></script>
+
+        <link rel="stylesheet" type="text/css" href="css/base.css" />
+        <link rel="stylesheet" type="text/css" href="css/third-party/jquery.tooltip.css" />
+    </head>
+    <body>
+        <div id="top">
+            <div>
+                <label id="notification"/>
+            </div>
+        </div>
+        <fieldset>
+            <legend>Dispositivos</legend>
+            <select id="scanner_list"><option/></select>
+            <input  id="update_scanners" type="button" value="Atualizar"/>
+        </fieldset>
+        <fieldset>
+            <legend>Documentos</legend>
+            <select id="document_list">
+                <option value="new">Novo Documento</option>
+                <optgroup id="documents" label="Documentos:"><option/></optgroup>
+            </select>
+            <div id="newdoc">
+                <label>Nome</label>
+                <input id="docname" />
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Páginas</legend> 
+            <label>Nome da página</label>
+            <input id="img_name"/>
+            <input id="scan_page" type="button" value="Digitalizar"/>
+            <ol id="page_list"><li/></ol>
+        </fieldset>
+        <fieldset>
+            <legend>Download</legend> 
+            <label>Título do documento</label>
+            <input id="doctitle"/>
+            <input id="download_doc" type="button" value="Download"/>
+        </fieldset>
+    </body>
+</html>
