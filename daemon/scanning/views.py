@@ -88,3 +88,6 @@ def get_pdf_document(request, username, docname):
 
     return HttpResponseNotFound()
 
+@json
+def get_user(request):
+    return User().todict()
