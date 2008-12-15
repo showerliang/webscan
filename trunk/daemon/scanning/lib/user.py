@@ -53,3 +53,6 @@ class User(object):
     
     def getdocument(self, docname):
         return self.documents.get(docname)
+        
+    def todict(self):
+        return {"username": self.username}
