@@ -5,6 +5,8 @@ class User(object):
     def __init__(self, username=None):
         if username is None:
             self.username = os.getenv('USERNAME')
+            if not self.username:
+                self.username = os.getenv('USER')
         else:    
             self.username = username
 
