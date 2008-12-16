@@ -17,18 +17,18 @@ class User(object):
         # Posix (Linux, Unix, etc...)
         if os.name == 'posix':
             self.home = os.getenv('HOME')
-            self.appdir = self.home + "/.webscan"
+            self.appdir = self.home + os.sep + ".webscan"
 
         # Windows
         elif os.name == 'nt':
             self.home = os.getenv('APPDATA')
-            self.appdir = self.home + "/webscan"
+            self.appdir = self.home + os.sep + "webscan"
         
         # Not supported OS
         else:
             raise Exception('OS not supported')
         
-        self.docdir = self.appdir + "/" + "documents"
+        self.docdir = self.appdir + os.sep + "documents"
         self.__createappdir()
         
         self.documents = {}
