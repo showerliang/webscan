@@ -8,10 +8,10 @@ from pilpe.plugins import OCR, PDF
 class Document(object): 
     def __init__(self, name, user):
         self.name = name
-        self.path = "%s/%s" % (user.docdir, name)
-        self.rawpath = "%s/%s/raw" % (user.docdir, name)
-        self.viewpath = "%s/%s/view" % (user.docdir, name)
-        self.thumbpath = "%s/%s/thumb" % (user.docdir, name)
+        self.path = "%s%s%s" % (user.docdir, os.sep, name)
+        self.rawpath = "%s%s%s%sraw" % (user.docdir, os.sep, name, os.sep)
+        self.viewpath = "%s%s%s%sview" % (user.docdir, os.sep, name, os.sep)
+        self.thumbpath = "%s%s%s%sthumb" % (user.docdir, os.sep, name, os.sep)
     
         if not os.path.exists(self.path):
             os.mkdir(self.path)
@@ -37,7 +37,7 @@ class Document(object):
             self.pages.update({page.name:page})
 
     def topdf(self, doctitle, pagenames, lang=None):
-        images_path = [ "%s/%s.tiff" % (self.rawpath, pagename) for pagename in pagenames ]
+        images_path = [ "%s%s%s.tiff" % (self.rawpath, os.sep, pagename) for pagename in pagenames ]
         print images_path    
 
         config = {}
@@ -46,7 +46,7 @@ class Document(object):
 
         ocr = OCR(config)
 
-        pdfpath = "%s/%s.pdf" % (self.path, self.name)
+        pdfpath = "%s%s%s.pdf" % (self.path, os.sep, self.name)
         pdf = PDF({
             'path': pdfpath, 
             'title': doctitle,
