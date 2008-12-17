@@ -35,7 +35,7 @@ function User() {
         for( var i in data ) {
             var page = data[i]
             var doc = $("#document_list").val()
-            var view_url = 'file://'+page['viewpath']
+            var view_url = 'file:///' + escape(page['viewpath'])
             var page_name = page['name']          
  
             $("#page_list").append(
