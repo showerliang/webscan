@@ -70,6 +70,7 @@ def list_doc_pages(request, username, docname):
     pages = doc.pages
     return [ pages[key].info() for key in pages ]
 
+@json
 def get_pdf_document(request, username, docname):
     user = User(username)
     
@@ -84,7 +85,7 @@ def get_pdf_document(request, username, docname):
         docpath = doc.topdf(doctitle, pages, lang)
 
         if os.path.exists(docpath):
-            return send_file(request, docpath, 'application/pdf')
+            return docpath
 
     return HttpResponseNotFound()
 
