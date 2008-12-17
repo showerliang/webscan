@@ -8,6 +8,7 @@ function User() {
 
     this.get_user = function(data) {
         user.username = data['username']
+        user.docdir = data['docdir']
         user.get_documents()
     }
  
@@ -32,9 +33,10 @@ function User() {
     this.list_pages = function(data) {
         $("#page_list").empty()
         for( var i in data ) {
+            var page = data[i]
             var doc = $("#document_list").val()
-            var view_url = 'http://localhost:4040/'+user.username+'/'+doc+'/view/'+data[i]+'.png'
-            var page_name = data[i]           
+            var view_url = 'file://'+page['viewpath']
+            var page_name = page['name']          
  
             $("#page_list").append(
                 '<li id="'+page_name+'">'+

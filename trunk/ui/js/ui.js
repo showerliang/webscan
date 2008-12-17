@@ -9,7 +9,7 @@ function UI()
     
     this.set_tooltips = function() {
         var doc = $("#document_list").val()
-        var thumb_url = 'http://localhost:4040/'+user.username+'/'+doc+'/thumb/'
+        var thumb_url = 'file://' + user.docdir + '/' + doc + '/thumb/'
         $("#page_list li").tooltip({
             bodyHandler: function() {
                 return $("<img/>").attr("src", thumb_url+ $(this).attr("id")+".png")
