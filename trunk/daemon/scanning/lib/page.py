@@ -5,9 +5,9 @@ class Page(object):
     def __init__(self, name, document, image=None):
 
         self.name = name
-        self.path = "%s%s%s.tiff" % (document.rawpath, os.sep, name)     
-        self.thumbpath = "%s%s%s.png" % (document.thumbpath, os.sep, name)
-        self.viewpath = "%s%s%s.png" % (document.viewpath, os.sep, name)
+        self.path = "%s/%s.tiff" % (document.rawpath, name)     
+        self.thumbpath = "%s/%s.png" % (document.thumbpath, name)
+        self.viewpath = "%s/%s.png" % (document.viewpath, name)
 
         if os.path.exists(self.path):
             # Page already exists and is trying to save using same name
@@ -30,5 +30,12 @@ class Page(object):
                     image.save(self.thumbpath) 
             # Page doesn't exists and there is no image to create
             else:
-                raise Exception("Page doesn't exists and no image was passed")   
+                raise Exception("Page doesn't exists and no image was passed")
+        
+    def info(self):
+        return {'name': self.name, 
+                'viewpath': self.viewpath, 
+                'thumbpath': self.thumbpath,
+                'path': self.path,
+                } 
  

@@ -68,7 +68,7 @@ def list_doc_pages(request, username, docname):
     user = User(username)
     doc = user.getdocument(docname)
     pages = doc.pages
-    return [ pages[key].name for key in pages ]
+    return [ pages[key].info() for key in pages ]
 
 def get_pdf_document(request, username, docname):
     user = User(username)

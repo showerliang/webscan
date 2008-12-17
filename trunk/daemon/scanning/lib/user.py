@@ -17,18 +17,18 @@ class User(object):
         # Posix (Linux, Unix, etc...)
         if os.name == 'posix':
             self.home = os.getenv('HOME')
-            self.appdir = self.home + os.sep + ".webscan"
+            self.appdir = self.home + '/' + ".webscan"
 
         # Windows
         elif os.name == 'nt':
             self.home = os.getenv('APPDATA')
-            self.appdir = self.home + os.sep + "webscan"
+            self.appdir = self.home + '/' + "webscan"
         
         # Not supported OS
         else:
             raise Exception('OS not supported')
         
-        self.docdir = self.appdir + os.sep + "documents"
+        self.docdir = self.appdir + '/' + "documents"
         self.__createappdir()
         
         self.documents = {}
@@ -55,4 +55,4 @@ class User(object):
         return self.documents.get(docname)
         
     def todict(self):
-        return {"username": self.username}
+        return {"username": self.username, "docdir": self.docdir}
