@@ -37,7 +37,6 @@ class Document(object):
 
     def topdf(self, doctitle, pagenames, lang=None):
         images_path = [ "%s/%s.tiff" % (self.rawpath, pagename) for pagename in pagenames ]
-        print images_path    
 
         config = {}
         if lang:
