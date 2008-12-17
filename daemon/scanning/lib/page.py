@@ -23,6 +23,8 @@ class Page(object):
                 if not isinstance(image, Image.Image):
                     raise TypeError('Page was expected to be instance of Image.Image')
                 else:
+                    # Size based on 200dpi and paper letter
+                    image = image.crop((0, 0, 1600, 2300))
                     self.image = image
                     image.save(self.path) 
                     image.save(self.viewpath) 
