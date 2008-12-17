@@ -48,7 +48,7 @@ function User() {
         }
     }
 
-    this.download = function() {
+    this.request_download = function() {
         var doc = $("#document_list").val()
         
         var ordered_pages = []
@@ -62,11 +62,18 @@ function User() {
         var lang = 'por'
         var doctitle = escape($("#doctitle").val())
 
-        var args = 'pages='+pages+
-            '&lang='+lang+
-            '&doctitle='+doctitle
+        var args = {
+            'pages' : JSON.stringify(ordered_pages),
+            'lang': lang,
+            'doctitle': $("#doctitle").val(),
+        }
     
-        var url = "http://localhost:4040/"+user.username+'/download/'+ doc +'.pdf?'+args
-        window.location.href = url
+        var url = user.username+'/download/'+ doc +'.pdf'
+
+        ajax.call(url, user.download, args)
+    }
+    
+    this.download = function(data) {
+        window.location.href = 'file:///'+data 
     }
 }

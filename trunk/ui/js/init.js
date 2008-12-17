@@ -9,7 +9,7 @@ function __init__() {
     $("#document_list").bind("change", ui.doclist_changed)
     $("#update_scanners").bind("click", scanner.show_available_devices)
     $("#scan_page").bind("click", scanner.scan)
-    $("#download_doc").bind("click", user.download)
+    $("#download_doc").bind("click", user.request_download)
 }
 
 $(document).ready(__init__)
