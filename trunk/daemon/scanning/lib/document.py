@@ -1,5 +1,4 @@
 import os
-import Image
 from daemon.scanning.lib.page import Page
 
 from pilpe import Pipeline
