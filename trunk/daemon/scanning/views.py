@@ -18,22 +18,18 @@ def get_scanner_info(request, id):
 
 @json
 def scan_page(request, id, docname, pagename):
-    try:
-        scanner = scanners.get(id)
-        image = scanner.scan()
-        user = User()
+    scanner = scanners.get(id)
+    image = scanner.scan()
+    user = User()
+    doc = user.getdocument(docname)        
+    if doc is None:
+        user.createdocument(docname)
         doc = user.getdocument(docname)        
-        if doc is None:
-            user.createdocument(docname)
-            doc = user.getdocument(docname)        
-        doc.addpage(pagename, image)
-    
-        host = 'http://'+request.get_host()
-        host_image = reverse('get-page',args=(user.username, docname, pagename))+".png"
-        return host + host_image
-    except Exception, e:
-        return {'error_msg': str(e)}
-        
+    doc.addpage(pagename, image)
+
+    host = 'http://'+request.get_host()
+    host_image = reverse('get-page',args=(user.username, docname, pagename))+".png"
+    return host + host_image
 
 def get_page(request, username, docname, pagename):
     user = User(username)
