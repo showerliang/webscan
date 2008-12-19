@@ -1,6 +1,6 @@
 
 function __init__() {
-    ajax = new Ajax().__init__("http://localhost:4040")
+    ajax = new Ajax().__init__("http://localhost:42831")
     scanner = new Scanners().__init__()
     user = new User().__init__()
     ui = new UI().__init__()
