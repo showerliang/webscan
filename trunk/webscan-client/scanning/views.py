@@ -18,22 +18,24 @@ def list_scanners(request):
     return serialized_devices
 
 @json
-def get_scanner_info(request, id):
-    return scanners.get(id).info()
+def get_scanner_info(request, scanner_id):
+    device = IMAGE_SCANNER.get_scanner(scanner_id)
+    return scanner_serializer(device)
 
 @json
-def scan_page(request, id, docname, pagename):
-    scanner = scanners.get(id)
-    image = scanner.scan()
+def scan_page(request, scanner_id, docname, pagename):
+    image = IMAGE_SCANNER.scan(scanner_id)
     user = User()
+
     doc = user.getdocument(docname)        
     if doc is None:
         user.createdocument(docname)
-        doc = user.getdocument(docname)        
     doc.addpage(pagename, image)
 
-    host = 'http://'+request.get_host()
-    host_image = reverse('get-page',args=(user.username, docname, pagename))+".png"
+    host = 'http://' + request.get_host()
+    args = (user.username, docname, pagename)  
+    host_image = reverse('get-page', args=args) + ".png"
+
     return host + host_image
 
 def get_page(request, username, docname, pagename):
