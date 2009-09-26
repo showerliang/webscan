@@ -1,0 +1,95 @@
+\section{Bibliotecas de Digitalização}
+\label{sec:pesquisa_libs}
+
+Uma das atividades na fase atual do projeto foi elaborar uma pesquisa sobre as principais bibliotecas de digitalização de documentos disponíveis para plataformas Microsoft Windows, através da interface TWAIN e para plataforma GNU/Linux, através da interface SANE. 
+
+Na seção \ref{sec:twain}, tem-se as principais bibliotecas encontradas para o uso da interface TWAIN e então, na seção \ref{sec:sane}, tem-se as principais bibliotecas encontradas para o uso da interface SANE.
+
+\subsection{TWAIN}
+\label{sec:twain}
+
+\subsubsection{Descrição}
+TWAIN é a interface de câmeras digitais e scanners específica para plataforma Windows 32 bits apenas. Não suporta scanners distribuídos na rede e não separa interface do driver (segundo www.sane-project.org).
+
+\subsubsection{Bibliotecas}
+\begin{description*}
+	\item[Nome:] TWAIN Module
+	\item[Linguagem(ns):] Python (versões 2.1 até 2.5)
+	\item[Licença:] GPLv2
+	\item[Plataforma(s):] Windows 32 bits
+	\item[Endereço:] http://twainmodule.sourceforge.net
+	\item[Última versão:] 1.0.3
+	\item[Data da última atualização do site:] Novembro de 2006
+	\item[Data do último {\it release}:] 31 de maio de 2007
+	\item[Atividade de desenvolvimento:] parado
+	\item[Descrição:] 
+	Bem completa. Suporta atividades básicas TWAIN como funções prontas ou funções TWAIN avançadas que podem ser implementadas. Possui documentação ampla, com tutoriais, referências, guias e exemplos.
+\end{description*}
+
+\begin{description*}
+	\item[Nome:] EZTwain
+	\item[Linguagem(ns):] C, C++, Visual Basic, Delphi, entre outras
+	\item[Licença:] Domínio público
+	\item[Plataforma(s):] Windows 32 bits
+	\item[Endereço:] http://www.dosadi.com/eztwain1.htm
+	\item[Última versão:] 1.16
+	\item[Data da última atualização do site:] Não disponível
+	\item[Data do último {\it release}:] 11 de maio de 2007
+	\item[Atividade de desenvolvimento:] parado
+	\item[Descrição:] 
+	É bastante popular, inclusive é amplamente usado através de um {\it wrapper} Java para TWAIN. Documentação limitada, porém possui exemplos prontos em C. Para C, foi testado apenas em Visual C++ 5 e 6.
+\end{description*}
+
+\begin{description*}
+	\item[Nome:] TWAIN Development Kit
+	\item[Linguagem(ns):] C, C++ (Visual Studio)
+	\item[Licença:] Privada
+	\item[Plataforma(s):] Windows 32 bits
+	\item[Endereço:] http://www.twain.org
+	\item[Última versão:] Não disponível
+	\item[Data da última atualização do site:] Não disponível
+	\item[Data do último {\it release}:] Não disponível
+	\item[Atividade de desenvolvimento:] Não disponível
+	\item[Descrição:] 
+	Documentação esparsa, faltam exemplos
+\end{description*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{SANE}
+\label{sec:sane}
+
+\subsubsection{Descrição}
+SANE (Scanner Access is Now Easy) é uma implementação de aquisição de imagens comum em sistemas open-source, como o Linux e FreeBSD. Há implementações para BeOS, OS/2 e MacOS X.
+
+\subsubsection{Bibliotecas}
+
+\begin{description*}
+	\item[Nome:] SANE API
+	\item[Linguagem(ns):] C
+	\item[Licença:] GPL
+	\item[Plataforma(s):] FreeBSD, Linux, BeOS, HP-UX, entre outros.
+	\item[Endereço:] http://www.sane-project.org
+	\item[Última versão:] 1.0.19
+	\item[Data da última atualização do site:] Não disponível
+	\item[Data do último {\it release}:] 11 de fevereiro de 2008
+	\item[Atividade de desenvolvimento:] alta
+	\item[Descrição:] 
+	Documentação ampla, comunidade ativa, muitas implementações disponíveis para serem usadas como exemplos.
+\end{description*}
+
+\begin{description*}
+	\item[Nome:] PIL (Python Imaging Library)
+	\item[Linguagem(ns):] Python (versões 2.4 e 2.5)
+	\item[Licença:] ver http://www.pythonware.com/products/pil/license.htm
+	\item[Plataforma(s):] FreeBSD, Linux, BeOS, HP-UX, entre outros.
+	\item[Endereço:] http://www.pythonware.com/products/pil/
+	\item[Última versão:] 1.1.6
+	\item[Data da última atualização do site:] Não disponível
+	\item[Data do último {\it release}:] 3 de dezembro de 2006
+	\item[Atividade de desenvolvimento:] Não disponível
+	\item[Descrição:] 
+	Amplamente usada para processamento de imagens em Linux, usada por diversos front-ends que usam python. Biblioteca simples, manual com tutorial incluso no código fonte da PIL.
+\end{description*}
+
+

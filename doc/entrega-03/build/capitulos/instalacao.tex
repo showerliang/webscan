@@ -1,0 +1,65 @@
+\section{Instalação}
+\label{sec:instalacao}
+Este capítulo descreve os passos para a instalação do módulo daemon do
+{\it webscan}. O módulo UI não exige instalação e por esse motivo não
+
+Estas instruções estão divididas em 2 seções que descrevem os
+procedimentos de instalação nos sistemas Linux e Windows respectivamente.
+
+Em ambos sistemas a instalação dos drivers específicos dos scanners que 
+serão utilizados é necessária para que software trabalhe corretamente.
+
+\subsection{Linux}
+Esta seção cobre a instalação do produto {\it webscan} na distribuição
+Ubuntu e outras que compartilham o mesmo tipo de gerenciamento de pacotes.
+
+As linhas de comando apresentadas nesta seção poderão iniciar com `\#' ou
+`\$'; quando iniciadas com `\#' significa que elas precisam ser executadas 
+com super-usuário (ou root), caso contrário um usuário convencional será
+suficiente.
+
+\subsubsection{Pré-Requisitos}
+Boa parte das dependências do {\it webscan} podem ser instaladas através 
+do software apt-get executando-se o comando:
+
+\begin{verbatim}
+ # apt-get install [nome_do_pacote nome_de_outro_pacote]
+\end{verbatim}
+
+Os pacotes necessários são:
+
+\begin{itemize}
+    \item python
+    \item python-imaging
+    \item python-imaging-sane
+    \item python-setuptools
+    \item python-simplejson
+\end{itemize}
+
+Após instalados os pacotes do sistema operacional será necessária a 
+instalação do Django. Baixe a versão 1.0 em:
+\begin{verbatim}
+http://www.djangoproject.com/
+\end{verbatim}
+
+Após baixar o pacote do Django a instalação deve ser realizada com as 
+seguintes linhas de comando:
+\begin{verbatim}
+ $ tar xzvf Django-1.0.tar.gz
+ $ cd Django-1.0
+ # python setup.py install
+\end{verbatim}
+
+\subsubsection{Módulo daemon}
+Para instalar o módulo daemon será necessário a cópia do 
+código-fonte para o servidor onde o scanner será utilizado.
+
+O código-fonte pode ser obtido no CD que segue junto a este
+relatório. A versão atualizada deste código também pode ser encontrada
+no repositório do projeto Interlegis em:
+\begin{verbatim}
+http://repositorio.interlegis.gov.br/digidoc/trunk/
+\end{verbatim}
+ 
+
+\subsection{Windows}
