@@ -1,3 +1,8 @@
-imagescanner >= 0.2
-django >= 1.0
- 
+Python Packages:
+    imagescanner >= 0.2
+    django >= 1.0
+    simplejson
+    pilpe >= 0.1
+
+Others: 
+    tesseract-ocr >= 2.0 (+ brazilian portuguese package)
