@@ -1,16 +1,21 @@
 import os
 
+import simplejson
 from django.http import HttpResponseNotFound
 from django.core.urlresolvers import reverse
-import pyscanning as scanners
-import simplejson
+from imagescanner import ImageScanner
+from imagescanner.utils import scanner_serializer
 
-from daemon.scanning.lib.user import User
-from daemon.utils import json, send_file
+from lib.user import User
+from utils import json, send_file
+
+IMAGE_SCANNER = ImageScanner()
 
 @json
 def list_scanners(request):
-    return scanners.list()
+    devices = IMAGE_SCANNER.list_scanners()
+    serialized_devices = [scanner_serializer(device) for device in devices]
+    return serialized_devices
 
 @json
 def get_scanner_info(request, id):

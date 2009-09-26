@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('daemon.scanning',
+urlpatterns = patterns('scanning',
     url(r'^user/$', 'views.get_user', name='get-user'),
     
     url(r'^scanner/$', 'views.list_scanners', name='list-scanners'),
