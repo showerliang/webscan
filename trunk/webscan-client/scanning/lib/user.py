@@ -1,5 +1,5 @@
 import os
-from daemon.scanning.lib.document import Document
+from document import Document
 
 class User(object):
     def __init__(self, username=None):

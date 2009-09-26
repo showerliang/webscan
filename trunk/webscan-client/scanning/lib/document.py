@@ -1,8 +1,9 @@
 import os
-from daemon.scanning.lib.page import Page
 
 from pilpe import Pipeline
 from pilpe.plugins import OCR, PDF
+
+from page import Page
 
 class Document(object): 
     def __init__(self, name, user):
