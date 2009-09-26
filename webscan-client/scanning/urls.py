@@ -5,7 +5,7 @@ urlpatterns = patterns('scanning',
     
     url(r'^scanner/$', 'views.list_scanners', name='list-scanners'),
     url(r'^scanner/(\d+)/$', 'views.get_scanner_info', name='get-scanner-info'),
-    url(r'^scanner/(\d+)/scan/(\w+)/(\w+)/$', 'views.scan_page', name='scan-page'),
+    url(r'^scanner/([\w\-]+)/scan/(\w+)/(\w+)/$', 'views.scan_page', name='scan-page'),
     
     url(r'^(\w+)/$', 'views.list_documents', name='list-documents'),
     url(r'^(\w+)/(\w+)/$', 'views.list_doc_pages', name='list-doc-pages'),
